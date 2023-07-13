@@ -1,15 +1,13 @@
 import express from 'express';
 import configViewEngine from './config/viewEngine.mjs';
-
+import initWebRoute from './route/web.js';
 
 const app = express();
 const port = 3000
-
+// set up view engine 
 configViewEngine(app);
-
-app.get('/', (req, res) => {
-    res.render('./index.ejs')
-})
+// innit wed router
+ initWebRoute(app);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
