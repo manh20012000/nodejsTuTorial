@@ -1,7 +1,7 @@
 import express from 'express';
 import configViewEngine from './config/viewEngine.mjs';
 import initWebRoute from './route/web.js';
-
+// import connection from './config/connectBD.js';
 const app = express();
 const port = 3000
 // set up view engine 
