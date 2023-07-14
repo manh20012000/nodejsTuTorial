@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<h1>HELLO xin chào le van MANH</h1>
+
        <!-- <img src="./image/tải xuống.jpg" alt=""> -->
       
    
@@ -41,12 +41,12 @@
          <%=test %> <!--  truyền từ ctroller sang view -->
            <% for(let i=0; i < dataUser.length; i++) { %>
                 <tr>
-                
+                 
                 <td><%= dataUser[i].id %></td>
                 <td><%= dataUser[i].fistname %></td>
                 <td><%= dataUser[i].lastname %></td>
                 <td>
-                     <a href="/detail/user/<%=dataUser[i].id %>" target="_blank">Detail</a>
+                     <a href="/detail/user/<%= dataUser[i].id %>" target="_blank">Detail</a>
                      <button type="button">Edit</button>
                      <button type="button">Delete</button>
 
@@ -55,7 +55,35 @@
             
             </tr>
            <% } %>
+              
         </table>
+      </div>
+      <div class="createUserContainer">
+        <form action="/create_newUser" method="POST"> 
+          <!-- action như thẻ a nó tự đôngj chuyen hường tới đươcng link mà 
+          có thể sảy ra hướng tơis  -->
+          <div> <b>create a new user</b></div>
+           
+          <div><!--thẻ b giups viết đậm lên  -->
+            <label for="">fistName :</label>
+              <input type="text" name="fistname"/>
+            </div>
+            <div>
+              <label for="">lastName :</label>
+              <input type="text" name="lastname"/>
+            </div>
+            <div>
+              <label for="" >Email :</label>
+              <input type="email"name="email"/>
+            </div>
+            <div>
+              <label for="" >Adress :</label>
+              <input type="text"name="adress"/>
+            </div>
+            <div> <button type="submit" class="btn"> submit</button></div>
+        </form>
+       
+       
       </div>
 <body>
 

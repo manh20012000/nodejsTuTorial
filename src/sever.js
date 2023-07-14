@@ -2,8 +2,14 @@ import express from 'express';
 import configViewEngine from './config/viewEngine.mjs';
 import initWebRoute from './route/web.js';
 // import connection from './config/connectBD.js';
+
+// const port = process.env.PORT||3000
 const app = express();
 const port = 3000
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+//config gữi đa ta client lên sever và lấy 1 cách đơ giản 
+
 // set up view engine 
 configViewEngine(app);
 // innit wed router

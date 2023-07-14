@@ -23,12 +23,25 @@ let getHomepage =async(req,res)=>{
     //  console.log('hsdshbshdv2'+check[0]); // hieenr thij 1 cais 
    return  res.render('./index.ejs',{dataUser: rows,test:'balbal'})
 }
+
+
+
 let getDetailPage = async (req,res)=>{
   let idUser =req.params.id;   // router.get('/detail/user/:id', vi datw ten bieen laf :id neen parames.id
   let users =await pool.execute('SELECT * FROM user  where `id`=? ',[idUser])// llap gep tung gtri cua mang vao dau ?
   console.log('check req parms : ',req.params)
-   return res.send(JSON.stringify(users))
+   return res.send(JSON.stringify(users[0]))
+}
+
+
+
+let createNewUser= async(req,res)=>{
+  console.log("check req",req.body);
+  //fistName,lastName,Email,Adress phair gioongs teen ben file index
+  let {fistname,lastname,email,adress}=req.body;
+  await pool.execute('insert into user(fistname,lastname,email,adress) values(?,?,?,?)',[fistname,lastname,email,adress])
+ return res.redirect('/')// quay veef trang home
 }
  export default {// expo để viết chạy nhìu phần tử cubgf lúc
-    getHomepage,getDetailPage
+    getHomepage,getDetailPage,createNewUser
 }
