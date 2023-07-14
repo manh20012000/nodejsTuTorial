@@ -10,11 +10,12 @@ let getHomepage =(req,res)=>{
          // console.log(results[0]); // results contains rows returned by server
           // console.log(fields); // fields contains extra meta data about results, if available
           data=results.map((row)=>{return row})
-        //   console.log('checkdata',data);
-        return  res.render('./index.ejs',{dataUser: JSON.stringify(data)})
+          // console.log('checkdata',data);
+        return  res.render('./index.ejs',{dataUser: data,test:'bscds strig test'})//obj dataUser: data, key value
         }  
       );
-      console.log('checkdata',JSON.stringify(data));
+      // console.log('checkdata',data); cái này bằng rồng vì cái này là bất đồng bộ nên nó chạy trước khi trar 
+      // kết quả
    
    
 }
