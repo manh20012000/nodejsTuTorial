@@ -42,6 +42,29 @@ let createNewUser= async(req,res)=>{
   await pool.execute('insert into user(fistname,lastname,email,adress) values(?,?,?,?)',[fistname,lastname,email,adress])
  return res.redirect('/')// quay veef trang home
 }
+
+let deleteuser=async(req,res)=>{
+  let userId=req.body.userId;
+  await pool.execute('delete from user where id=?',[userId]);
+    // return res.send(`hele delete ${req.body.userId}`) thư nghiệm 
+    return res.redirect('/')// quay veef trang home
+}
+ let getEditPage=async (req,res)=>{
+
+  let id=req.params.id;
+let [user]= await pool.execute('select*from user where id=?',[id])
+    // return res.render(JSON.stringify(user))
+     console.log(user[0])
+    return res.render('update.ejs',{dataUser:user[0]});   // chuyeenr doi obj key value a <-b
+  }
+
+let postUpdateUser=async (req,res)=>{
+
+  let {fistname,lastname,email,adress,id}=req.body;
+  await pool.execute('update user set fistname=?, lastname=?,email=?,adress=? where id=?',[fistname,lastname,email,adress,id]);
+  //  return res.send('hele');
+  return res.redirect('/')// quay veef trang home
+}
  export default {// expo để viết chạy nhìu phần tử cubgf lúc
-    getHomepage,getDetailPage,createNewUser
+    getHomepage,getDetailPage,createNewUser,deleteuser,getEditPage,postUpdateUser
 }

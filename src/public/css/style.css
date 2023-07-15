@@ -42,3 +42,20 @@ body {
   margin-top: 10px;
   cursor: pointer;
 }
+.act{
+  display: inline-block;
+}
+.UpdateUserContainer label{
+  display: block;
+}
+.UpdateUserContainer{padding: 15px;
+text-align: center;
+}
+.UpdateUserContainer label{
+  display: block;
+}
+.save{
+  margin-top: 15px;
+  background-color: #04AA6D;
+  cursor: pointer;
+}
