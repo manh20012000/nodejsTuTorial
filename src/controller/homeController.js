@@ -1,4 +1,6 @@
 import pool from "../config/connectBD.js";
+import multer from "multer";
+
 let getHomepage =async(req,res)=>{
     // sử lý logic  vơius database
     let data=[];
@@ -33,8 +35,6 @@ let getDetailPage = async (req,res)=>{
    return res.send(JSON.stringify(users[0]))
 }
 
-
-
 let createNewUser= async(req,res)=>{
   console.log("check req",req.body);
   //fistName,lastName,Email,Adress phair gioongs teen ben file index
@@ -65,6 +65,44 @@ let postUpdateUser=async (req,res)=>{
   //  return res.send('hele');
   return res.redirect('/')// quay veef trang home
 }
+
+let getUploadfile =async(req,res)=>{
+     return res.render("uploadFile.ejs");
+
+}
+
+
+
+
+const upload=multer().single('profile_pic');
+
+let handleUploadFile= async(req,res)=>{
+       // 'profile_pic' is the name of our file input field in the HTML form
+  console.log(req.file);
+      //  let upload = multer({ storage: storage, fileFilter:imageFilter }).single('profile_pic');
+
+  upload(req, res, function(err) {
+    // req.file contains information of uploaded file
+    // req.body contains information of text fields, if there were any
+
+    if (req.fileValidationError) {
+        return res.send(req.fileValidationError);
+    }
+    else if (!req.file) {
+        return res.send('Please select an image to upload');
+    }
+    else if (err instanceof multer.MulterError) {
+        return res.send(err);
+    }
+    else if (err) {
+        return res.send(err);
+    }
+
+    // Display uploaded image for user validation
+    res.send(`You have uploaded this image: <hr/><img src="/image/${req.file.filename}" width="500"><hr /><a href="/uploadFile">Upload another image</a>`);
+});
+}
+
  export default {// expo để viết chạy nhìu phần tử cubgf lúc
-    getHomepage,getDetailPage,createNewUser,deleteuser,getEditPage,postUpdateUser
+    getHomepage,getDetailPage,createNewUser,deleteuser,getEditPage,postUpdateUser,getUploadfile,handleUploadFile
 }

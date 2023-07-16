@@ -59,3 +59,18 @@ text-align: center;
   background-color: #04AA6D;
   cursor: pointer;
 }
+.btnSave{
+background-color: chocolate;
+  cursor: pointer;
+}
+.uploadFile {
+
+  padding: 15px;
+}
+.uploadFile label {
+  display: block;
+
+}
+.uploadFile div{
+  margin-top: 5px;
+}
