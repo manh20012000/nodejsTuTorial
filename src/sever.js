@@ -2,7 +2,7 @@ import express from 'express';
 import configViewEngine from './config/viewEngine.mjs';
 import initWebRoute from './route/web.js';
 // import connection from './config/connectBD.js';
-
+import initAPIRoute from './route/api.js';
 // const port = process.env.PORT||3000
 const app = express();
 const port = 3000
@@ -14,7 +14,8 @@ app.use(express.urlencoded({ extended: true}));
 configViewEngine(app);
 // innit wed router
  initWebRoute(app);
-
+// khoit taoj api
+initAPIRoute(app);
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
@@ -31,4 +32,3 @@ app.listen(port, () => {
 // app.listen(port, () => {
 //   console.log(`Example app listening on port ${port}`)
 // })
-
